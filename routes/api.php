@@ -1,9 +1,17 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\API\AuthController;
 
-Route::post('/signup', [UserController::class, 'signup']);
-Route::post('/login', [UserController::class, 'login']);
-Route::middleware('auth:api')->get('/user', [UserController::class, 'getUser']);
+
+// Auth routes
+Route::post('/signup', [AuthController::class, 'signup']);
+Route::post('/check_username', [AuthController::class, 'checkUsername']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+
+
+
+
+
