@@ -10,11 +10,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', parse_url(env('JAWSDB_URL'), PHP_URL_HOST)),
-            'port' => env('DB_PORT', parse_url(env('JAWSDB_URL'), PHP_URL_PORT)),
-            'database' => env('DB_DATABASE', ltrim(parse_url(env('JAWSDB_URL'), PHP_URL_PATH), '/')),
-            'username' => env('DB_USERNAME', parse_url(env('JAWSDB_URL'), PHP_URL_USER)),
-            'password' => env('DB_PASSWORD', parse_url(env('JAWSDB_URL'), PHP_URL_PASS)),
+            'host' => env('DB_HOST', '127.0.0.1'), // Default to localhost; update in .env
+            'port' => env('DB_PORT', '3306'), // Default MySQL port
+            'database' => env('DB_DATABASE', 'forge'), // Default database name; update in .env
+            'username' => env('DB_USERNAME', 'forge'), // Default username; update in .env
+            'password' => env('DB_PASSWORD', ''), // Default password; update in .env
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -22,9 +22,9 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
+            'options' => extension_loaded('pdo_mysql') ? [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            ] : [],
         ],
 
     ],
